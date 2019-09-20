@@ -1,4 +1,4 @@
-<?php var_dump($newVar); ?>
+<?php //var_dump($countryList); ?>
 
 
 <div class="container py-5">
@@ -41,12 +41,17 @@
 
                 <div class="form-group row">
                     <div class="col-sm-6">
-<!--                        --><?php //include ('countries.php');?>
+
                         <label for="Country">Country</label>
-<!--                                                <input type="text" class="form-control" id="inputAddressLine2" placeholder="Line 2">-->
+
                         <select id="countries" name="countries" class="form-control">
-                            <option value="33" selected>Bulgaria</option>;
+                            <?php
+                            foreach ($countryList as $country){
+                                echo '<option value="'. $country['id'] .'" selected>'. $country['country_name'] .'</option>';
+                            }
+                            ?>
                         </select>
+<!--                        <option value="33" selected>Bulgaria</option>;-->
 
                     </div>
                     <div class="col-sm-6">

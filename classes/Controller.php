@@ -17,7 +17,7 @@ abstract class Controller{
     protected function returnView($viewmodel, $fullview, $var = array()){
 
         foreach ($var as $key=>$value){
-            ${$key} = ${$value};
+            ${$key} = $value;
         }
 
         $view = 'views/'. strtolower(get_class($this)). '/' . $this->action. '.php';

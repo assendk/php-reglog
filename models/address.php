@@ -11,4 +11,9 @@ class AddressModel extends Model {
         $rows = $this->resultSet();
         return $rows;
     }
+    public function countriesList(){
+        $this->query('SELECT * FROM countries');
+        $rows = $this->resultSet();
+        return $rows;
+    }
 }

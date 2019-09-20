@@ -7,9 +7,11 @@ class Users extends Controller {
 //    }
 
     protected function register(){
-        $newVar = ['aaa' => 'test3'];
+        $country_req = new AddressModel();
+        $country_list = $country_req->countriesList();
+
         $viewmodel = new UserModel();
-        $this->returnView($viewmodel->register(), true, ['newVar' => $newVar]);
+        $this->returnView($viewmodel->register(), true, ['countryList' => $country_list]);
     }
 
     protected function countries(){
