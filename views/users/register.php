@@ -4,9 +4,10 @@
 <div class="container py-5">
     <div class="row">
         <div class="col-md-10 mx-auto">
+                <h3>Register new user</h3>
 
-            <form id="signup" method="post" action="<?php $_SERVER['PHP_SELF']; ?>" >
-                <div class="form-group row">
+            <form id="signup" method="post" action="<?php $_SERVER['PHP_SELF']; ?>" class="card p-4 bg-light" >
+                <div class="form-group row ">
                     <div class="col-sm-6">
                         <label for="inputFirstname">First name*</label>
                         <input type="text" class="form-control" name="first_name" id="inputFirstname" placeholder="First name">
@@ -19,11 +20,11 @@
 
                 <div class="form-group row">
                     <div class="col-sm-6">
-                        <label for="inputContactNumber">Email*</label>
+                        <label for="inputEmail">Email*</label>
                         <input type="email" class="form-control" name="email" id="inputEmail" placeholder="email@site.com" required>
                     </div>
                     <div class="col-sm-6">
-                        <label for="inputContactNumber">Phone number*</label>
+                        <label for="inputPhone">Phone number*</label>
                         <input type="text" class="form-control" name="phone" id="inputPhone" placeholder="+123 456789">
                     </div>
                 </div>

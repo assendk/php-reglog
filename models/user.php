@@ -1,22 +1,22 @@
 <?php
+
+
 class UserModel extends Model
 {
 
-//    public function Index(){
-//        $this->query('SELECT * FROM users');
-//        $rows = $this->resultSet();
-//        print_r($rows);
-//    }
+
 
     public function register()
     {
         try {
             $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
-//            $password = md5($post['password']);
-            $password = password_hash($post['password'], PASSWORD_BCRYPT, ['cost'=>12]);
+            if ($post['password'] === $post['password_confirm']) {
+                $password = password_hash($post['password'], PASSWORD_BCRYPT, ['cost'=>12]);
+            } else {
+                return '{"error":{"text":"Password dont match"}}';
+            }
 
-//            var_dump($post); die();
 
             if ($post['register']) {
                 // insert user address
@@ -69,29 +69,25 @@ class UserModel extends Model
         // Sanitize POST
         $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
-//        $pass_check = password_verify ($password, $data->password);
         $password = htmlentities($post['password']);
 
         if($post['submit']){
-            // Compare Login
+            // Check password
             $this->query('SELECT * FROM users WHERE email = :email');
-
             $this->bind(':email', $post['email']);
-            $this->bind(':password', $password);
             $row = $this->single();
 
-            die($row);
+            $pass_check = password_verify ($password, $row['password']);
 
-            if($row){
-                $pass_check = password_verify ($password, $data->password);
+            if($row && $pass_check){
 
                 $_SESSION['is_logged_in'] = true;
                 $_SESSION['user_data'] = array(
                     "id"	=> $row['id'],
-                    "name"	=> $row['name'],
+                    "name"	=> $row['first_name'] . " " .$row['last_name'],
                     "email"	=> $row['email']
                 );
-                header('Location: '.ROOT_URL.'shares');
+                header('Location: '.ROOT_URL.'addresses');
             } else {
                 echo 'Incorrect Login';
             }

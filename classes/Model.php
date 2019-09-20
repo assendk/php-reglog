@@ -44,14 +44,27 @@ abstract class Model
         $this->stmt->execute();
     }
 
+    /**
+     * Get all rows
+     * @return array
+     */
     public function resultSet(){
         $this->execute();
         return $this->stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    /**
+     * Get last insert ide
+     * @return integer
+     */
     public function lastInsertId(){
         return $this->dbh->lastInsertId();
     }
+
+    /**
+     * Get single row
+     * @return array
+     */
 
     public function single(){
         $this->execute();
