@@ -14,8 +14,14 @@ abstract class Controller{
         return $this->{$this->action}();
     }
 
-    protected function returnView($viewmodel, $fullview){
+    protected function returnView($viewmodel, $fullview, $var = array()){
+
+        foreach ($var as $key=>$value){
+            ${$key} = ${$value};
+        }
+
         $view = 'views/'. strtolower(get_class($this)). '/' . $this->action. '.php';
+
         if($fullview){
             require('views/main.php');
         } else {

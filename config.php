@@ -1,4 +1,6 @@
 <?php
+// app php-reglog
+//https://github.com/assendk/php-reglog
 
 define("DB_HOST", "localhost");
 define("DB_PORT", "3306");

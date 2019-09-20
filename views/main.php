@@ -7,7 +7,7 @@
 
     <link rel="stylesheet" href="../assets/css/bootstrap.css">
     <link rel="stylesheet" href="../assets/css/style.css">
-    <title>Document 1</title>
+    <title>CWeb</title>
 </head>
 <body>
 
@@ -44,7 +44,6 @@
 <main role="main" class="container">
 
     <div class="">
-
         <?php require($view); ?>
     </div>
 

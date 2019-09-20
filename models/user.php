@@ -13,19 +13,28 @@ class UserModel extends Model
         try {
             $post = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
-            $password = md5($post['password']);
-//        $password = password_hash($post['password'], PASSWORD_BCRYPT, ['cost'=>12]);
+//            $password = md5($post['password']);
+            $password = password_hash($post['password'], PASSWORD_BCRYPT, ['cost'=>12]);
 
 //            var_dump($post); die();
 
             if ($post['register']) {
+                // insert user address
+                $this->query('INSERT INTO `addresses` (address, country_id, postcode) VALUES(:address, :country_id, :postcode);');
+                $this->bind(':address', $post['address']);
+                $this->bind(':country_id', $post['countries']);
+                $this->bind(':postcode', $post['postcode']);
+                $this->execute();
+                $aid = $this->lastInsertId();
 
-                $this->query('INSERT INTO users (first_name, last_name, email, password, address_id) VALUES(:first_name, :last_name, :email, :password, :address);');
+                // insert user
+                $this->query('INSERT INTO users (first_name, last_name, email, password, address_id) VALUES(:first_name, :last_name, :email, :password, :address_id);');
                 $this->bind(':first_name', $post['first_name']);
                 $this->bind(':last_name', $post['last_name']);
                 $this->bind(':email', $post['email']);
                 $this->bind(':password', $password);
-                $this->bind(':address', '1');
+                $this->bind(':address_id', $aid);
+
                 $this->execute();
 
                 $uid = $this->lastInsertId();
@@ -54,5 +63,9 @@ class UserModel extends Model
         $this->query('SELECT * FROM countries');
         $rows = $this->resultSet();
         return $rows;
+    }
+
+    public function login(){
+        return;
     }
 }
