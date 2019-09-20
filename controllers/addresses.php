@@ -1,8 +1,8 @@
 <?php
 
-class Home extends Controller {
+class Addresses extends Controller {
     protected function index(){
-        $viewmodel = new HomeModel();
+        $viewmodel = new AddressModel();
         $this->returnView($viewmodel->Index(), true);
     }
 }
