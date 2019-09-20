@@ -10,4 +10,9 @@ class Users extends Controller {
         $viewmodel = new UserModel();
         $this->returnView($viewmodel->register(), true);
     }
+
+    protected function countries(){
+        $viewmodel = new UserModel();
+        $this->returnView($viewmodel->countries(), true);
+    }
 }

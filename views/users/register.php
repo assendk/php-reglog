@@ -1,3 +1,4 @@
+<?php var_dump($viewmodel); ?>
 <div class="container py-5">
     <div class="row">
         <div class="col-md-10 mx-auto">
@@ -16,6 +17,17 @@
 
                 <div class="form-group row">
                     <div class="col-sm-6">
+                        <label for="inputContactNumber">Email*</label>
+                        <input type="email" class="form-control" name="email" id="inputEmail" placeholder="email@site.com">
+                    </div>
+                    <div class="col-sm-6">
+                        <label for="inputContactNumber">Phone number*</label>
+                        <input type="text" class="form-control" name="phone" id="inputPhone" placeholder="+123 456789">
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-sm-6">
                         <label for="inputContactNumber">Password*</label>
                         <input type="password" class="form-control" name="password" id="inputPassword" placeholder="******">
                     </div>
@@ -27,23 +39,12 @@
 
                 <div class="form-group row">
                     <div class="col-sm-6">
-                        <label for="inputAddressLine2">Country</label>
+<!--                        <label for="Country">Country</label>-->
 <!--                        <input type="text" class="form-control" id="inputAddressLine2" placeholder="Line 2">-->
 
-                        <select id="countries" name="countries" class="form-control">
-
-                            <?php foreach($viewmodel as $item) : ?>
-                                <div class="card">
-                                    <div class="card-body">
-                                        <h3><?php echo $item['address']; ?></h3>
-                                        <small><?php echo $item['country_id']; ?></small>
-                                        <hr />
-                                        <p><?php echo $item['postcode']; ?></p>
-                                        <br />
-                                    </div>
-                                </div>
-                            <?php endforeach; ?>
-                        </select>
+<!--                        <select id="countries" name="countries" class="form-control">-->
+                            <?php include ('countries.php');?>
+<!--                        </select>-->
 
                     </div>
                     <div class="col-sm-6">
@@ -52,14 +53,6 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <div class="col-sm-6">
-                        <label for="inputCity">Phone</label>
-                        <input type="text" class="form-control" id="inputCity" placeholder="City">
-                    </div>
-                    <div class="col-sm-3">
-                        <label for="inputState">State</label>
-                        <input type="text" class="form-control" id="inputState" placeholder="State">
-                    </div>
                     <div class="col-sm-3">
                         <label for="inputPostalCode">Postal Code</label>
                         <input type="text" class="form-control" id="inputPostalCode" placeholder="Postal Code">
